@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_pfa_report_view_form">
+        <field name="name">pfa.report.wiz.form</field>
+        <field name="model">pfa.report.wiz</field>
+        <field name="arch" type="xml">
+            <form string="PFA Remittance Report">
+                <group colspan="4" col="4">
+
+
+                     <field name="from_date"/>
+                    <field name="date_end"/>
+                    <field name="company" invisible="1"/>
+                </group>
+              <footer>
+                    <button name="get_item_data" type="object" string="Print" class="oe_highlight"/>
+                    Or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_pfa_excel">
+        <field name="name">view.pfa.report.excel</field>
+        <field name="model">pfa.report.excel</field>
+        <field name="arch" type="xml">
+            <form string="Download Your PFA Remittance Advice Here">
+                <field name="name" invisible="1"/>
+                <field name="file_download" filename="name"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pfa_reporting_excel" model="ir.actions.act_window">
+        <field name="name">PFA Remittance Advice</field>
+        <field name="res_model">pfa.report.wiz</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_pfa_excel_report" name="PFA Remittance Excel" action="pfa_advice_excel.action_pfa_reporting_excel"
+              parent="payroll_report_excel.menu_payroll_excel_report"/>
+</odoo>
